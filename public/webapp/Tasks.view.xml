@@ -1,0 +1,10 @@
+<mvc:View
+	controllerName="webapp.Tasks"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<List
+		headerText="Todo List"
+		items="{/Tasks}" >
+		<StandardListItem title="{text}" />
+	</List>
+</mvc:View>
