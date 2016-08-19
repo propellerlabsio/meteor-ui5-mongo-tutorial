@@ -1,0 +1,26 @@
+<head>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<title>My First Meteor-UI5 App</title>
+
+<script id='sap-ui-bootstrap'
+    src='https://openui5.hana.ondemand.com/1.38.4/resources/sap-ui-core.js'
+    data-sap-ui-theme='sap_bluecrystal'
+    data-sap-ui-libs='sap.m'
+    data-sap-ui-resourceroots='{
+      "webapp": "/webapp/",
+      "meteor-ui5": "/packages/propellerlabsio_meteor-ui5/"
+    }'
+    data-sap-ui-compatVersion='edge'
+    data-sap-ui-preload='async'>
+</script>
+
+<script>
+     sap.ui.getCore().attachInit(function () {
+         jQuery("#content").html("Hello World - UI5 is ready");
+     });
+</script>
+
+</head>
+<body class='sapUiBody'>
+    <div id='content'></div>
+</body>
