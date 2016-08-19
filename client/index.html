@@ -8,14 +8,16 @@
         data-sap-ui-theme='sap_bluecrystal'
         data-sap-ui-libs='sap.m'
         data-sap-ui-resourceroots='{
-      "webapp": "/webapp/",
-      "meteor-ui5": "/packages/propellerlabsio_meteor-ui5/"
-    }'
+          "webapp": "/webapp/",
+          "meteor-ui5": "/packages/propellerlabsio_meteor-ui5/"
+        }'
         data-sap-ui-compatVersion='edge'
         data-sap-ui-preload='async'></script>
 
     <script>
-        sap.ui.xmlview({viewName: "webapp.Tasks"}).placeAt("content");
+        sap.ui.getCore().attachInit(function () {
+          sap.ui.xmlview({viewName: "webapp.Tasks"}).placeAt("content");
+        });
     </script>
 
 </head>
