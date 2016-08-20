@@ -1,13 +1,10 @@
-<mvc:View
-	controllerName="webapp.Tasks"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m">
-	<List
-		class="sapUiResponsiveMargin"
-		width="600px"
-		headerText="Todo List"
-		items="{/Tasks}" >
-		<StandardListItem
-			title="{text}" />
+<mvc:View controllerName="webapp.Tasks"
+				xmlns:mvc="sap.ui.core.mvc"
+				xmlns="sap.m">
+	<List class="sapUiResponsiveMargin"
+					width="600px"
+					headerText="Todo List"
+					items="{/Tasks}">
+		<StandardListItem title="{text}" />
 	</List>
 </mvc:View>
