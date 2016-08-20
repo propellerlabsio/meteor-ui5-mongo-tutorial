@@ -1,9 +1,9 @@
 <head>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+    <meta http-equiv='X-UA-Compatible'
+        content='IE=edge' />
     <title>My First Meteor-UI5 App</title>
 
-    <script
-        id='sap-ui-bootstrap'
+    <script id='sap-ui-bootstrap'
         src='https://openui5.hana.ondemand.com/1.38.4/resources/sap-ui-core.js'
         data-sap-ui-theme='sap_bluecrystal'
         data-sap-ui-libs='sap.m'
@@ -15,12 +15,21 @@
         data-sap-ui-preload='async'></script>
 
     <script>
-        sap.ui.getCore().attachInit(function () {
-          sap.ui.xmlview({viewName: "webapp.Tasks"}).placeAt("content");
+        sap.ui.getCore().attachInit(function() {
+            // Create view
+            const oView = sap.ui.xmlview({
+                viewName: "webapp.Tasks"
+            });
+
+            // Add it to new Shell and place at content div
+            new sap.m.Shell({
+                app: oView
+            }).placeAt("content");
         });
     </script>
 
 </head>
+
 <body class='sapUiBody'>
     <div id='content'></div>
 </body>
