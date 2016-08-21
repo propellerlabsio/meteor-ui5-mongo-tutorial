@@ -1,13 +1,17 @@
 <mvc:View controllerName="webapp.Tasks"
 				height="100%"
 				xmlns:mvc="sap.ui.core.mvc"
+				xmlns:l="sap.ui.layout"
 				xmlns="sap.m">
 	<Page title="Todo List"
 					class="sapUiResponsiveContentPadding">
 		<content>
-			<List items="{/Tasks}">
-				<StandardListItem title="{text}" />
-			</List>
+			<l:Grid defaultSpan="XL8 L8 M8 S12"
+				defaultIndent="XL2 L2 M2 S0">
+				<List items="{/Tasks}">
+					<StandardListItem title="{text}" />
+				</List>
+			</l:Grid>
 		</content>
 	</Page>
 </mvc:View>
