@@ -3,12 +3,19 @@
 				xmlns:mvc="sap.ui.core.mvc"
 				xmlns:l="sap.ui.layout"
 				xmlns="sap.m">
+
+	<!-- Page for heading and content padding-->
 	<Page title="Todo List"
 					class="sapUiResponsiveContentPadding">
 		<content>
+			<!-- Grid for responsive layout on different devices -->
 			<l:Grid defaultSpan="XL8 L8 M8 S12"
-				defaultIndent="XL2 L2 M2 S0">
+							defaultIndent="XL2 L2 M2 S0">
+
+				<!-- Tasks list -->
 				<List items="{/Tasks}">
+
+					<!-- Task list item -->
 					<StandardListItem title="{text}" />
 				</List>
 			</l:Grid>
