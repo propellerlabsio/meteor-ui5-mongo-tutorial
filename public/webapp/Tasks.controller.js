@@ -9,6 +9,15 @@ sap.ui.define([
     onInit: function() {
       var oModel = new MongoModel();
       this.getView().setModel(oModel);
+    },
+
+    onAddTask: function(oEvent){
+        var oInput = oEvent.getSource();
+        Mongo.Collection.get("Tasks").insert({
+            text: oInput.getValue(),
+            createdAt: new Date()
+        });
+        oInput.setValue();
     }
 
   });

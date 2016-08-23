@@ -13,7 +13,20 @@
 							defaultIndent="XL2 L2 M2 S0">
 
 				<!-- Tasks list -->
-				<List items="{/Tasks}">
+				<List items="{
+					path: '/Tasks',
+					sorter: {
+						path: 'createdAt',
+						descending: true
+					}}">
+
+					<!-- List toolbar -->
+					<headerToolbar>
+						<Toolbar>
+							<Label text="Add:" />
+							<Input change="onAddTask" placeholder="Task text" />
+						</Toolbar>
+					</headerToolbar>
 
 					<!-- Task list item -->
 					<StandardListItem title="{text}" />
