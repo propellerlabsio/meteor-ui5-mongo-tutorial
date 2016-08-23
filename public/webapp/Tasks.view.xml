@@ -18,7 +18,9 @@
 					sorter: {
 						path: 'createdAt',
 						descending: true
-					}}">
+					}}"
+					mode="MultiSelect"
+					selectionChange="onSelectionChange">
 
 					<!-- List toolbar -->
 					<headerToolbar>
@@ -29,7 +31,14 @@
 					</headerToolbar>
 
 					<!-- Task list item -->
-					<StandardListItem title="{text}" />
+					<CustomListItem
+						selected="{checked}">
+						<FormattedText htmlText="{=
+							${checked}
+							? '&lt;span class=&quot;completedTask&quot;&gt;' + ${text} + '&lt;/span&gt;'
+							: ${text}
+							}"/>
+					</CustomListItem>
 				</List>
 			</l:Grid>
 		</content>
