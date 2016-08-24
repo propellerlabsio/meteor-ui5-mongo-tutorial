@@ -1,7 +1,8 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-ui5/model/mongo/Model'
-], function(Controller, MongoModel) {
+  'meteor-ui5/model/mongo/Model',
+  'sap/m/MessageBox'
+], function(Controller, MongoModel, MessageBox) {
   "use strict";
 
   var CController = Controller.extend("webapp.Tasks", {
@@ -20,6 +21,22 @@ sap.ui.define([
             createdAt: new Date()
         });
         oInput.setValue();
+    },
+
+    onPressDeleteTask: function(oEvent){
+      var oListItem = oEvent.getSource();
+      var oTaskData = oListItem.getBindingContext().getObject();
+
+      // Ask user to confirm delete
+      var that = this;
+      MessageBox.confirm("Permanently remove task?", {
+        onClose: function(oAction){
+          if (oAction === MessageBox.Action.OK){
+            // Remove the task
+            that.oTasks.remove(oTaskData._id);
+          }
+        }
+      });
     },
 
     onSelectionChange: function(oEvent){

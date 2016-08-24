@@ -26,17 +26,23 @@
 					<headerToolbar>
 						<Toolbar>
 							<Label text="Add:" />
-							<Input change="onAddTask" placeholder="Task text" />
+							<Input change="onAddTask"
+											placeholder="Task text" />
 						</Toolbar>
 					</headerToolbar>
 
 					<!-- Task list item -->
-					<CustomListItem
-						selected="{checked}">
-						<FormattedText htmlText="{
-								parts:[{path:'checked'},{path:'text'}],
-								formatter:'.getTaskTextAsHtml'
-							}"/>
+					<CustomListItem selected="{checked}">
+						<Toolbar>
+							<FormattedText htmlText="{
+									parts:[{path:'checked'},{path:'text'}],
+									formatter:'.getTaskTextAsHtml'
+								}" />
+							<ToolbarSpacer />
+							<Button type="Transparent"
+											press="onPressDeleteTask"
+											text="X" />
+						</Toolbar>
 					</CustomListItem>
 				</List>
 			</l:Grid>
