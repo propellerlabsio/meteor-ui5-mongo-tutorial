@@ -30,6 +30,14 @@ sap.ui.define([
       this.oTasks.update(oTaskData._id, {
         $set: { checked: oListItem.getSelected() },
       });
+    },
+
+    getTaskTextAsHtml: function(bChecked, sText){
+      if (bChecked){
+        return "<span class='completedTask'>" + sText + "</span>";
+      } else {
+        return sText;
+      }
     }
 
   });

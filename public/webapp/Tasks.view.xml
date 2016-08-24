@@ -33,10 +33,9 @@
 					<!-- Task list item -->
 					<CustomListItem
 						selected="{checked}">
-						<FormattedText htmlText="{=
-							${checked}
-							? '&lt;span class=&quot;completedTask&quot;&gt;' + ${text} + '&lt;/span&gt;'
-							: ${text}
+						<FormattedText htmlText="{
+								parts:[{path:'checked'},{path:'text'}],
+								formatter:'.getTaskTextAsHtml'
 							}"/>
 					</CustomListItem>
 				</List>
