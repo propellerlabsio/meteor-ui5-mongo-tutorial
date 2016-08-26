@@ -8,6 +8,7 @@ sap.ui.define([
   var CController = Controller.extend("webapp.Tasks", {
 
     oTasks: Mongo.Collection.get("Tasks"),
+    oUiState: Mongo.Collection.get("UiState"),
 
     onInit: function() {
       var oModel = new MongoModel();
@@ -36,6 +37,14 @@ sap.ui.define([
             that.oTasks.remove(oTaskData._id);
           }
         }
+      });
+    },
+
+    onPressShowCompleted: function(oEvent){
+      var oButton = oEvent.getSource();
+      var oCurrentState = this.oUiState.findOne('TasksView') || {};
+      this.oUiState.update('TasksView', {
+        $set: { showCompleted: !oCurrentState.showCompleted },
       });
     },
 

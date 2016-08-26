@@ -28,6 +28,11 @@
 							<Label text="Add:" />
 							<Input change="onAddTask"
 											placeholder="Task text" />
+							<ToolbarSpacer />
+							<ToggleButton tooltip="Show completed tasks"
+								pressed="UiState(TasksView)/showCompleted"
+								icon="sap-icon://complete"
+								press="onPressShowCompleted" />
 						</Toolbar>
 					</headerToolbar>
 
