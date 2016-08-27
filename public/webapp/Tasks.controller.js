@@ -8,7 +8,6 @@ sap.ui.define([
   var CController = Controller.extend("webapp.Tasks", {
 
     oTasks: Mongo.Collection.get("Tasks"),
-    oUiState: Mongo.Collection.get("UiState"),
 
     onInit: function() {
       var oModel = new MongoModel();
