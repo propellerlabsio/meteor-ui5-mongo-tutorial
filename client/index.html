@@ -9,25 +9,11 @@
         data-sap-ui-libs='sap.m'
         data-sap-ui-resourceroots='{
           "webapp": "/webapp/",
-          "meteor-ui5": "/packages/propellerlabsio_meteor-ui5/"
+          "meteor-ui5-mongo": "/packages/propellerlabsio_meteor-ui5-mongo/"
         }'
         data-sap-ui-compatVersion='edge'
-        data-sap-ui-preload='async'></script>
-
-    <script>
-        sap.ui.getCore().attachInit(function() {
-            // Create view
-            const oView = sap.ui.xmlview({
-                viewName: "webapp.Tasks"
-            });
-
-            // Add it to new Shell and place at content div
-            new sap.m.Shell({
-                app: oView
-            }).placeAt("content");
-        });
+        data-sap-ui-preload='async'>
     </script>
-
 </head>
 
 <body class='sapUiBody'>
