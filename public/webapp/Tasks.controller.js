@@ -1,8 +1,11 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'meteor-ui5-mongo/model/Model',
+  'sap/ui/model/json/JSONModel',
+  'sap/ui/model/Filter',
+  'sap/ui/model/FilterOperator',
   'sap/m/MessageBox'
-], function(Controller, MongoModel, MessageBox) {
+], function(Controller, MongoModel, JSONModel, Filter, FilterOperator, MessageBox) {
   "use strict";
 
   var CController = Controller.extend("webapp.Tasks", {
@@ -10,8 +13,16 @@ sap.ui.define([
     oTasks: Mongo.Collection.get("Tasks"),
 
     onInit: function() {
+      // Our main data model
       var oModel = new MongoModel();
       this.getView().setModel(oModel);
+
+      // Our local view state model
+      var oViewState = {
+        showCompleted: true
+      };
+      var oViewModel = new JSONModel(oViewState);
+      this.getView().setModel(oViewModel, "ViewState");
     },
 
     onAddTask: function(oEvent){
@@ -39,12 +50,24 @@ sap.ui.define([
       });
     },
 
-    onPressShowCompleted: function(oEvent){
-      var oButton = oEvent.getSource();
-      var oCurrentState = this.oUiState.findOne('TasksView') || {};
-      this.oUiState.update('TasksView', {
-        $set: { showCompleted: !oCurrentState.showCompleted },
-      });
+    onPressShowCompleted: function(){
+      // Get current state of "show completed" toggle button
+      var oViewState = this.getView().getModel('ViewState');
+      var bShowCompleted = oViewState.getProperty('/showCompleted');
+
+      // Build task filter according to current state
+      var aFilters = [];
+      if (!bShowCompleted){
+        aFilters.push(new Filter({
+            path: 'checked',
+            operator: FilterOperator.NE,
+            value1: true
+        }));
+      }
+
+      // Set filter
+      var oTaskList = this.byId("TaskList");
+      oTaskList.getBinding('items').filter(aFilters);
     },
 
     onSelectionChange: function(oEvent){

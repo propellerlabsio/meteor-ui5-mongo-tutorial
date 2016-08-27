@@ -13,11 +13,12 @@
 							defaultIndent="XL2 L2 M2 S0">
 
 				<!-- Tasks list -->
-				<List items="{
-					path: '/Tasks',
-					sorter: {
-						path: 'createdAt',
-						descending: true
+				<List id="TaskList"
+					items="{
+						path: '/Tasks',
+						sorter: {
+							path: 'createdAt',
+							descending: true
 					}}"
 					mode="MultiSelect"
 					selectionChange="onSelectionChange">
@@ -30,7 +31,7 @@
 											placeholder="Task text" />
 							<ToolbarSpacer />
 							<ToggleButton tooltip="Show completed tasks"
-								pressed="UiState(TasksView)/showCompleted"
+								pressed="{ViewState>/showCompleted}"
 								icon="sap-icon://complete"
 								press="onPressShowCompleted" />
 						</Toolbar>
