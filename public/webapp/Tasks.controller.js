@@ -11,7 +11,6 @@ sap.ui.define([
 
     onInit: function() {
       // Include our custom style sheet
-      debugger;
       jQuery.sap.includeStyleSheet("webapp/style.css");
       
       // Instantiate Mongo Model
