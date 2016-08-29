@@ -1,7 +1,8 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
+  'jquery.sap.global',
   'meteor-ui5-mongo/model/Model'
-], function(Controller, MongoModel) {
+], function(Controller, jQuery, MongoModel) {
   "use strict";
 
   var CController = Controller.extend("webapp.Tasks", {
@@ -9,6 +10,11 @@ sap.ui.define([
     oTasks: Mongo.Collection.get("Tasks"),
 
     onInit: function() {
+      // Include our custom style sheet
+      debugger;
+      jQuery.sap.includeStyleSheet("webapp/style.css");
+      
+      // Instantiate Mongo Model
       var oModel = new MongoModel();
       this.getView().setModel(oModel);
     },
