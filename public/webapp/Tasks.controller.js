@@ -6,6 +6,8 @@ sap.ui.define([
 
   var CController = Controller.extend("webapp.Tasks", {
 
+    oTasks: Mongo.Collection.get("Tasks"),
+
     onInit: function() {
       var oModel = new MongoModel();
       this.getView().setModel(oModel);
@@ -13,7 +15,7 @@ sap.ui.define([
 
     onAddTask: function(oEvent){
         var oInput = oEvent.getSource();
-        Mongo.Collection.get("Tasks").insert({
+        this.oTasks.insert({
             text: oInput.getValue(),
             createdAt: new Date()
         });
