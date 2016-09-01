@@ -1,6 +1,6 @@
 # Meteor-UI5 Mongo Tutorial
 
-This repo contains the completed source for each step of the [Meteor-Ui5 Mongo Tutorial](http://localhost:3000/#/tutorial/mongo/step/00).  Each step is published in its own branch and continues from the previous step.  Actual tutorial instruction text is published on the website.
+This repo contains the completed source for each step of the [Meteor-Ui5 Mongo Tutorial](http://meteor-ui5.propellerlabs.io/#/tutorial/mongo/step/00).  Each step is published in its own branch and continues from the previous step.  Actual tutorial instruction text is published on the website.
 
 ## Contributing
 
