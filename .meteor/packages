@@ -22,3 +22,4 @@ static-html@1.1.12
 shell-server@0.2.1
 propellerlabsio:meteor-ui5-debug
 propellerlabsio:meteor-ui5-mongo
+accounts-password

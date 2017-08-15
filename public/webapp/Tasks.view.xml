@@ -2,11 +2,34 @@
 				height="100%"
 				xmlns:mvc="sap.ui.core.mvc"
 				xmlns:l="sap.ui.layout"
+        xmlns:form="sap.ui.layout.form"
 				xmlns="sap.m">
 
 	<!-- Page for heading and content padding-->
 	<Page title="Todo List"
 					class="sapUiResponsiveContentPadding">
+   <content>
+      <form:SimpleForm editable="true" id="formId"
+        maxContainerCols="2"
+        layout="ResponsiveGridLayout"
+        labelSpanL="4"
+        labelSpanM="4"
+        emptySpanL="4"
+        emptySpanM="4">
+        <Label text="Email"/>
+        <Input id="inputEmail" type="Email"/>
+        <Label text="Password"/>
+        <Input id="inputPassword" type="Password"/>
+      
+      </form:SimpleForm>
+        <Toolbar>
+        <ToolbarSpacer/>
+        <Button id="idConfirmSignOut" text="Sign out" press="onSignOutAccount"></Button>
+        <Button id="idConfirmCreate" text="Create account" press="onCreateAccount"></Button>
+        <Button id="idConfirmLogin" text="Log in" press="onLogInAccount"></Button>
+      </Toolbar>
+    </content>
+
 		<content>
 			<!-- Grid for responsive layout on different devices -->
 			<l:Grid defaultSpan="XL8 L8 M8 S12"
