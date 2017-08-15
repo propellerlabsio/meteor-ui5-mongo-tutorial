@@ -6,18 +6,17 @@ sap.ui.define([
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/m/MessageBox'
-], function (Controller, jQuery, MongoModel, JSONModel, Filter, FilterOperator, MessageBox) {
+], function(Controller, jQuery, MongoModel, JSONModel, Filter, FilterOperator, MessageBox) {
   "use strict";
 
   var CController = Controller.extend("webapp.Tasks", {
 
     oTasks: Mongo.Collection.get("Tasks"),
 
-    onInit: function () {
+    onInit: function() {
       this._validateForm();
       // Include our custom style sheet
       jQuery.sap.includeStyleSheet("webapp/style.css");
-
       // Instantiate Mongo Model
       var oModel = new MongoModel();
       this.getView().setModel(oModel);
@@ -32,7 +31,7 @@ sap.ui.define([
       oBtnSignOut.setVisible(false);
     },
 
-    onAddTask: function (oEvent) {
+    onAddTask: function(oEvent) {
       var oUser = Meteor.user();
       if (oUser._id) {
         var oInput = oEvent.getSource();
@@ -45,7 +44,7 @@ sap.ui.define([
       }
     },
 
-    onPressDeleteTask: function (oEvent) {
+    onPressDeleteTask: function(oEvent){
       if (Meteor.user()) {
         var oListItem = oEvent.getSource();
         var oTaskData = oListItem.getBindingContext().getObject();
@@ -53,8 +52,8 @@ sap.ui.define([
         // Ask user to confirm delete
         var that = this;
         MessageBox.confirm("Permanently remove task?", {
-          onClose: function (oAction) {
-            if (oAction === MessageBox.Action.OK) {
+          onClose: function(oAction){
+            if (oAction === MessageBox.Action.OK){
               // Remove the task
               that.oTasks.remove(oTaskData._id);
             }
@@ -63,7 +62,7 @@ sap.ui.define([
       }
     },
 
-    onPressShowCompleted: function () {
+    onPressShowCompleted: function(){
       var oUser = Meteor.user();
       // Get current state of "show completed" toggle button
       var oViewState = this.getView().getModel('ViewState');
@@ -71,7 +70,7 @@ sap.ui.define([
 
       // Build task filter according to current state
       var aFilters = [];
-      if (!bShowCompleted) {
+      if (!bShowCompleted){
         aFilters.push(new Filter({
           path: 'checked',
           operator: FilterOperator.NE,
