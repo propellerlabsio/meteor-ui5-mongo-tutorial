@@ -31,9 +31,9 @@ sap.ui.define([
       oBtnSignOut.setVisible(false);
     },
 
-    onAddTask: function(oEvent) {
+    onAddTask: function(oEvent){
       var oUser = Meteor.user();
-      if (oUser._id) {
+      if (oUser._id){
         var oInput = oEvent.getSource();
         this.oTasks.insert({
           userId: oUser._id,
@@ -45,7 +45,7 @@ sap.ui.define([
     },
 
     onPressDeleteTask: function(oEvent){
-      if (Meteor.user()) {
+      if (Meteor.user()){
         var oListItem = oEvent.getSource();
         var oTaskData = oListItem.getBindingContext().getObject();
 
@@ -89,8 +89,8 @@ sap.ui.define([
       oTaskList.getBinding('items').filter(aFilters);
     },
 
-    onSelectionChange: function (oEvent) {
-      if (Meteor.user()) {
+    onSelectionChange: function(oEvent){
+      if (Meteor.user()){
         var oListItem = oEvent.getParameters().listItem;
         var oTaskData = oListItem.getBindingContext().getObject();
 
@@ -101,14 +101,14 @@ sap.ui.define([
       }
     },
 
-    getTaskTextAsHtml: function (bChecked, sText) {
+    getTaskTextAsHtml: function(bChecked, sText){
       if (bChecked) {
         return "<span class='completedTask'>" + sText + "</span>";
       } else {
         return sText;
       }
     },
-    _getInputValues: function () {
+    _getInputValues: function(){
       var oInputEmail = this.byId("inputEmail");
       var oInputPassword = this.byId("inputPassword");
       return {
@@ -118,20 +118,20 @@ sap.ui.define([
     },
 
     // Users can log in if they already created account
-    onLogInAccount: function () {
+    onLogInAccount: function(){
       var input = this._getInputValues();
       Meteor.loginWithPassword(input.email, input.password, (oError) => {
-        if (oError) {
-          if (oError.message === "User not found [403]") {
+        if(oError){
+          if(oError.message === "User not found [403]"){
             MessageBox.information("User not found. Please check your entries or create new account");
-          } else if (oError.message === "Incorrect password [403]") {
+          } else if (oError.message === "Incorrect password [403]"){
             MessageBox.information("Incorrect password. Please try again");
           } else {
             MessageBox.error('Error Log In', {
               details: oError.toString()
             });
           }
-        } else if (Meteor.user()) {
+        } else if (Meteor.user()){
           var oTasks = this.byId('TaskList');
           oTasks.setVisible(true);
           this._stateBtn();
@@ -141,7 +141,7 @@ sap.ui.define([
     },
 
     // Filter tasks list by user Id 
-    _onFilterTasks: function () {
+    _onFilterTasks: function(){
       var oUser = Meteor.user();
       if (oUser._id) {
         var aFilter = new Filter({
@@ -156,10 +156,10 @@ sap.ui.define([
     },
 
     // Create new user for this account
-    onCreateAccount: function () {
+    onCreateAccount: function(){
       var input = this._getInputValues();
       Accounts.createUser({ email: input.email, password: input.password }, (oError) => {
-        if (oError) {
+        if (oError){
           if (oError.message === "Email already exists. [403]") {
             MessageBox.information("Email already exists. Please log in with your password");
           } else if (oError.message === "Need to set a username or email [400]") {
@@ -179,7 +179,7 @@ sap.ui.define([
     },
 
     // Validate the form that only show if user is currently logged in
-    _validateForm: function () {
+    _validateForm: function(){
       if (!Meteor.user()) {
         var oTasks = this.byId('TaskList');
         oTasks.setVisible(false);
@@ -190,8 +190,8 @@ sap.ui.define([
     },
 
     // State Btn depending on user login and logout 
-    _stateBtn: function () {
-      if (Meteor.user()) {
+    _stateBtn: function(){
+      if (Meteor.user()){
         var oSimpleForm = this.byId("formId");
         oSimpleForm.setVisible(false);
         var oBtnSignOut = this.byId("idConfirmSignOut");
@@ -203,9 +203,9 @@ sap.ui.define([
       }
     },
 
-    onSignOutAccount: function () {
+    onSignOutAccount: function(){
       Meteor.logout((oError) => {
-        if (oError) {
+        if (oError){
           MessageBox.error("Error Logout", {
             details: oError.toString()
           })
