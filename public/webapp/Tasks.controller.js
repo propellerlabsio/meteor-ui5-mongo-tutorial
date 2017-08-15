@@ -77,14 +77,14 @@ sap.ui.define([
           value1: true
         }));
       }
-      if (oUser._id) {
+      if (oUser._id){
         aFilters.push(new Filter({
           path: 'userId',
           operator: FilterOperator.EQ,
           value1: oUser._id
         }));
       }
-      // Set filter
+     // Set filter
       var oTaskList = this.byId("TaskList");
       oTaskList.getBinding('items').filter(aFilters);
     },
@@ -102,7 +102,7 @@ sap.ui.define([
     },
 
     getTaskTextAsHtml: function(bChecked, sText){
-      if (bChecked) {
+      if (bChecked){
         return "<span class='completedTask'>" + sText + "</span>";
       } else {
         return sText;
