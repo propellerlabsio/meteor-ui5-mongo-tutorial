@@ -14,7 +14,9 @@ sap.ui.define([
     oTasks: Mongo.Collection.get("Tasks"),
 
     onInit: function() {
+      
       this._validateForm();
+
       // Include our custom style sheet
       jQuery.sap.includeStyleSheet("webapp/style.css");
       // Instantiate Mongo Model
@@ -179,6 +181,7 @@ sap.ui.define([
     },
 
     // Validate the form that only show if user is currently logged in
+    // @chhunly rename this to hideOrShowTaskList
     _validateForm: function(){
       if (!Meteor.user()) {
         var oTasks = this.byId('TaskList');
@@ -189,7 +192,8 @@ sap.ui.define([
       }
     },
 
-    // State Btn depending on user login and logout 
+    // Change the state of the buttons depending on whether the user is logged in or not
+    // @chhunly change this method to showOrHideAccountButtons
     _stateBtn: function(){
       if (Meteor.user()){
         var oSimpleForm = this.byId("formId");
