@@ -14,8 +14,8 @@ sap.ui.define([
     oTasks: Mongo.Collection.get("Tasks"),
 
     onInit: function() {
-      
-      this._validateForm();
+
+      this.hideOrShowTaskList();
 
       // Include our custom style sheet
       jQuery.sap.includeStyleSheet("webapp/style.css");
@@ -110,7 +110,7 @@ sap.ui.define([
         return sText;
       }
     },
-    _getInputValues: function(){
+    getInputValues: function(){
       var oInputEmail = this.byId("inputEmail");
       var oInputPassword = this.byId("inputPassword");
       return {
@@ -121,7 +121,7 @@ sap.ui.define([
 
     // Users can log in if they already created account
     onLogInAccount: function(){
-      var input = this._getInputValues();
+      var input = this.getInputValues();
       Meteor.loginWithPassword(input.email, input.password, (oError) => {
         if(oError){
           if(oError.message === "User not found [403]"){
@@ -136,14 +136,14 @@ sap.ui.define([
         } else if (Meteor.user()){
           var oTasks = this.byId('TaskList');
           oTasks.setVisible(true);
-          this._stateBtn();
-          this._onFilterTasks();
+          this.showOrHideAccountButtons();
+          this.onFilterTasks();
         }
       });
     },
 
     // Filter tasks list by user Id 
-    _onFilterTasks: function(){
+    onFilterTasks: function(){
       var oUser = Meteor.user();
       if (oUser._id) {
         var aFilter = new Filter({
@@ -159,7 +159,7 @@ sap.ui.define([
 
     // Create new user for this account
     onCreateAccount: function(){
-      var input = this._getInputValues();
+      var input = this.getInputValues();
       Accounts.createUser({ email: input.email, password: input.password }, (oError) => {
         if (oError){
           if (oError.message === "Email already exists. [403]") {
@@ -173,17 +173,16 @@ sap.ui.define([
           }
 
         } else {
-          this._stateBtn();
-          this._validateForm();
-          this._onFilterTasks();
+          this.showOrHideAccountButtons();
+          this.hideOrShowTaskList();
+          this.onFilterTasks();
         }
       });
     },
 
-    // Validate the form that only show if user is currently logged in
-    // @chhunly rename this to hideOrShowTaskList
-    _validateForm: function(){
-      if (!Meteor.user()) {
+    // Hide or Show the Task List whether user is logged in or not
+    hideOrShowTaskList: function(){
+      if (!Meteor.user()){
         var oTasks = this.byId('TaskList');
         oTasks.setVisible(false);
       } else {
@@ -193,8 +192,7 @@ sap.ui.define([
     },
 
     // Change the state of the buttons depending on whether the user is logged in or not
-    // @chhunly change this method to showOrHideAccountButtons
-    _stateBtn: function(){
+    showOrHideAccountButtons: function(){
       if (Meteor.user()){
         var oSimpleForm = this.byId("formId");
         oSimpleForm.setVisible(false);
@@ -222,7 +220,7 @@ sap.ui.define([
           oBtnCreateAccount.setVisible(true);
           var oBtnLogInAccount = this.byId("idConfirmLogin");
           oBtnLogInAccount.setVisible(true);
-          this._validateForm();
+          this.hideOrShowTaskList();
         }
       });
     }
